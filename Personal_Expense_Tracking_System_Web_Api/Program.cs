@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Personal_Expense_Tracking_System_Web_Api.Data;
+using Personal_Expense_Tracking_System_Web_Api.Repository;
+using Personal_Expense_Tracking_System_Web_Api.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDB>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
     );
+
+builder.Services.AddScoped<IUnitOfWork, UniteOfWork>();
 
 var app = builder.Build();
 
