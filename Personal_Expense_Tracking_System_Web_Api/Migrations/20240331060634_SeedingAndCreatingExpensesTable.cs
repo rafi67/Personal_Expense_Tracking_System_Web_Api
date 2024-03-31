@@ -8,24 +8,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Personal_Expense_Tracking_System_Web_Api.Migrations
 {
     /// <inheritdoc />
-    public partial class seedingExpenseCategoriesAndExpensesTable : Migration
+    public partial class SeedingAndCreatingExpensesTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "expenseCategories",
-                columns: table => new
-                {
-                    ExpenseCategoryID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_expenseCategories", x => x.ExpenseCategoryID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "expenses",
                 columns: table => new
@@ -50,18 +37,13 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "expenseCategories",
-                columns: new[] { "ExpenseCategoryID", "CategoryName" },
+                table: "expenses",
+                columns: new[] { "ExpenseID", "ExpenseAmount", "ExpenseCategoryID", "ExpenseDate", "ExpenseReference", "ExpenseTitle" },
                 values: new object[,]
                 {
-                    { 1, "Education" },
-                    { 2, "Groceries" },
-                    { 3, "Health" },
-                    { 4, "Subscriptions" },
-                    { 5, "Takeaways" },
-                    { 6, "Clothing" },
-                    { 7, "Travelling" },
-                    { 8, "Other" }
+                    { 1, 120.0, 3, new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2075), "Tooth removal", "Dentiest Appointment" },
+                    { 2, 3000.0, 7, new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2077), "Went to Spain", "Travelling" },
+                    { 3, 800.0, 8, new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2078), "Rent and bills", "Rent" }
                 });
 
             migrationBuilder.UpdateData(
@@ -69,38 +51,28 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                 keyColumn: "IncomeId",
                 keyValue: 1,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6694));
+                value: new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(1991));
 
             migrationBuilder.UpdateData(
                 table: "incomes",
                 keyColumn: "IncomeId",
                 keyValue: 2,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6710));
+                value: new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2006));
 
             migrationBuilder.UpdateData(
                 table: "incomes",
                 keyColumn: "IncomeId",
                 keyValue: 3,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6711));
+                value: new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2007));
 
             migrationBuilder.UpdateData(
                 table: "incomes",
                 keyColumn: "IncomeId",
                 keyValue: 4,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6713));
-
-            migrationBuilder.InsertData(
-                table: "expenses",
-                columns: new[] { "ExpenseID", "ExpenseAmount", "ExpenseCategoryID", "ExpenseDate", "ExpenseReference", "ExpenseTitle" },
-                values: new object[,]
-                {
-                    { 1, 120.0, 3, new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6781), "Tooth removal", "Dentiest Appointment" },
-                    { 2, 3000.0, 7, new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6783), "Went to Spain", "Travelling" },
-                    { 3, 800.0, 8, new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6785), "Rent and bills", "Rent" }
-                });
+                value: new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2008));
 
             migrationBuilder.CreateIndex(
                 name: "IX_expenses_ExpenseCategoryID",
@@ -114,36 +86,33 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
             migrationBuilder.DropTable(
                 name: "expenses");
 
-            migrationBuilder.DropTable(
-                name: "expenseCategories");
-
             migrationBuilder.UpdateData(
                 table: "incomes",
                 keyColumn: "IncomeId",
                 keyValue: 1,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2916));
+                value: new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7129));
 
             migrationBuilder.UpdateData(
                 table: "incomes",
                 keyColumn: "IncomeId",
                 keyValue: 2,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2931));
+                value: new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7146));
 
             migrationBuilder.UpdateData(
                 table: "incomes",
                 keyColumn: "IncomeId",
                 keyValue: 3,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2933));
+                value: new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7148));
 
             migrationBuilder.UpdateData(
                 table: "incomes",
                 keyColumn: "IncomeId",
                 keyValue: 4,
                 column: "Date",
-                value: new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2934));
+                value: new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7149));
         }
     }
 }

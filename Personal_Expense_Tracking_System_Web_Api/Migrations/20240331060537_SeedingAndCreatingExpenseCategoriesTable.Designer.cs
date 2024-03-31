@@ -12,8 +12,8 @@ using Personal_Expense_Tracking_System_Web_Api.Data;
 namespace Personal_Expense_Tracking_System_Web_Api.Migrations
 {
     [DbContext(typeof(ApplicationDB))]
-    [Migration("20240312091358_seedingCategoriesAndIncomesTable")]
-    partial class seedingCategoriesAndIncomesTable
+    [Migration("20240331060537_SeedingAndCreatingExpenseCategoriesTable")]
+    partial class SeedingAndCreatingExpenseCategoriesTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,6 +84,65 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.ExpenseCategories", b =>
+                {
+                    b.Property<int>("ExpenseCategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExpenseCategoryID"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ExpenseCategoryID");
+
+                    b.ToTable("expenseCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            ExpenseCategoryID = 1,
+                            CategoryName = "Education"
+                        },
+                        new
+                        {
+                            ExpenseCategoryID = 2,
+                            CategoryName = "Groceries"
+                        },
+                        new
+                        {
+                            ExpenseCategoryID = 3,
+                            CategoryName = "Health"
+                        },
+                        new
+                        {
+                            ExpenseCategoryID = 4,
+                            CategoryName = "Subscriptions"
+                        },
+                        new
+                        {
+                            ExpenseCategoryID = 5,
+                            CategoryName = "Takeaways"
+                        },
+                        new
+                        {
+                            ExpenseCategoryID = 6,
+                            CategoryName = "Clothing"
+                        },
+                        new
+                        {
+                            ExpenseCategoryID = 7,
+                            CategoryName = "Travelling"
+                        },
+                        new
+                        {
+                            ExpenseCategoryID = 8,
+                            CategoryName = "Other"
+                        });
+                });
+
             modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.Incomes", b =>
                 {
                     b.Property<int>("IncomeId")
@@ -105,6 +164,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                     b.Property<double>("SalaryAmount")
                         .HasColumnType("float");
 
+                    b.Property<string>("SalaryTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("IncomeId");
 
                     b.HasIndex("CategoryID");
@@ -116,33 +179,37 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         {
                             IncomeId = 1,
                             CategoryID = 5,
-                            Date = new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2916),
-                            Reference = "Bitcoin money",
-                            SalaryAmount = 2000.0
+                            Date = new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7129),
+                            Reference = "From freelance works.",
+                            SalaryAmount = 1300.0,
+                            SalaryTitle = "From Freelance"
                         },
                         new
                         {
                             IncomeId = 2,
                             CategoryID = 3,
-                            Date = new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2931),
-                            Reference = "Spotify",
-                            SalaryAmount = 8000.0
+                            Date = new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7146),
+                            Reference = "My January Spotify earnings.",
+                            SalaryAmount = 8000.0,
+                            SalaryTitle = "Spotify"
                         },
                         new
                         {
                             IncomeId = 3,
                             CategoryID = 7,
-                            Date = new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2933),
-                            Reference = "Youtube Addsense",
-                            SalaryAmount = 1200.0
+                            Date = new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7148),
+                            Reference = "My January youtube earnings.",
+                            SalaryAmount = 1200.0,
+                            SalaryTitle = "Youtube Adsense"
                         },
                         new
                         {
                             IncomeId = 4,
                             CategoryID = 1,
-                            Date = new DateTime(2024, 3, 12, 15, 13, 57, 855, DateTimeKind.Local).AddTicks(2934),
-                            Reference = "Developer Salary",
-                            SalaryAmount = 6000.0
+                            Date = new DateTime(2024, 3, 31, 12, 5, 37, 330, DateTimeKind.Local).AddTicks(7149),
+                            Reference = "My January developer salary.",
+                            SalaryAmount = 6000.0,
+                            SalaryTitle = "Developer Salary"
                         });
                 });
 

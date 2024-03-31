@@ -24,8 +24,8 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             return _unitOfWork.Expenses.GetAll(includeProperties: "ExpenseCategories");
         }
 
-        [HttpGet]
-        public async Task<Expenses> GetExpense(int id)
+        [HttpGet("/{id:long}")]
+        public async Task<Expenses> GetExpense([FromRoute] int id)
         {
             return _unitOfWork.Expenses.Get(u => u.ExpenseID == id);
         }
@@ -46,8 +46,8 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             return Ok(200);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteExpense(int id)
+        [HttpDelete("/{id:long}")]
+        public async Task<IActionResult> DeleteExpense([FromRoute] int id)
         {
             var expense = _unitOfWork.Expenses.Get(u => u.ExpenseID == id);
             _unitOfWork.Expenses.Remove(expense);

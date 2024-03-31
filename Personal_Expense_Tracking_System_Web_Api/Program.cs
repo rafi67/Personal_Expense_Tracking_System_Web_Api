@@ -14,7 +14,18 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDB>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
     );
-
+builder.Services.AddCors(
+    (setup) =>
+    {
+        setup.AddPolicy("defualt", (options) =>
+        {
+            options
+            .WithOrigins("*")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+    }
+    );
 builder.Services.AddScoped<IUnitOfWork, UniteOfWork>();
 
 var app = builder.Build();
@@ -29,6 +40,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("defualt");
 
 app.MapControllers();
 

@@ -10,6 +10,8 @@ namespace Personal_Expense_Tracking_System_Web_Api.Models
     {
         [Key]
         public int IncomeId { get; set; }
+
+        public string SalaryTitle { get; set; }
         public double SalaryAmount { get; set; }
         public int CategoryID { get; set; }
         public DateTime Date { get; set; }

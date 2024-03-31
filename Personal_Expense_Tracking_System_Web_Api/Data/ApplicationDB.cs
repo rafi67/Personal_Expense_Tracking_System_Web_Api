@@ -28,10 +28,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Data
                 );
 
             modelBuilder.Entity<Incomes>().HasData(
-                new Incomes { IncomeId = 1, SalaryAmount = 2000, Date = DateTime.Now, CategoryID = 5, Reference = "Bitcoin money"},
-                new Incomes { IncomeId = 2, SalaryAmount = 8000, Date = DateTime.Now, CategoryID = 3, Reference = "Spotify"},
-                new Incomes { IncomeId = 3, SalaryAmount = 1200, Date = DateTime.Now, CategoryID = 7,  Reference = "Youtube Addsense"},
-                new Incomes { IncomeId = 4, SalaryAmount = 6000, Date = DateTime.Now, CategoryID = 1, Reference = "Developer Salary" }
+                new Incomes { IncomeId = 1, SalaryTitle = "From Freelance", SalaryAmount = 1300, Date = DateTime.Now, CategoryID = 5, Reference = "From freelance works." },
+                new Incomes { IncomeId = 2, SalaryTitle = "Spotify", SalaryAmount = 8000, Date = DateTime.Now, CategoryID = 3, Reference = "My January Spotify earnings." },
+                new Incomes { IncomeId = 3, SalaryTitle = "Youtube Adsense", SalaryAmount = 1200, Date = DateTime.Now, CategoryID = 7, Reference = "My January youtube earnings." },
+                new Incomes { IncomeId = 4, SalaryTitle = "Developer Salary", SalaryAmount = 6000, Date = DateTime.Now, CategoryID = 1, Reference = "My January developer salary." }
                 );
 
             modelBuilder.Entity<ExpenseCategories>().HasData(
@@ -46,7 +46,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Data
                 );
 
             modelBuilder.Entity<Expenses>().HasData(
-                new Expenses { ExpenseID = 1, ExpenseTitle = "Dentiest Appointment", ExpenseAmount = 120, ExpenseDate = DateTime.Now, ExpenseCategoryID = 3, ExpenseReference = "Tooth removal"},
+                new Expenses { ExpenseID = 1, ExpenseTitle = "Dentiest Appointment", ExpenseAmount = 120, ExpenseDate = DateTime.Now, ExpenseCategoryID = 3, ExpenseReference = "Tooth removal" },
                 new Expenses { ExpenseID = 2, ExpenseTitle = "Travelling", ExpenseAmount = 3000, ExpenseDate = DateTime.Now, ExpenseCategoryID = 7, ExpenseReference = "Went to Spain" },
                 new Expenses { ExpenseID = 3, ExpenseTitle = "Rent", ExpenseAmount = 800, ExpenseDate = DateTime.Now, ExpenseCategoryID = 8, ExpenseReference = "Rent and bills" }
                 );

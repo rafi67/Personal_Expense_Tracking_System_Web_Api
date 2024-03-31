@@ -12,8 +12,8 @@ using Personal_Expense_Tracking_System_Web_Api.Data;
 namespace Personal_Expense_Tracking_System_Web_Api.Migrations
 {
     [DbContext(typeof(ApplicationDB))]
-    [Migration("20240312153145_seedingExpenseCategoriesAndExpensesTable")]
-    partial class seedingExpenseCategoriesAndExpensesTable
+    [Migration("20240331060634_SeedingAndCreatingExpensesTable")]
+    partial class SeedingAndCreatingExpensesTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -180,7 +180,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                             ExpenseID = 1,
                             ExpenseAmount = 120.0,
                             ExpenseCategoryID = 3,
-                            ExpenseDate = new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6781),
+                            ExpenseDate = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2075),
                             ExpenseReference = "Tooth removal",
                             ExpenseTitle = "Dentiest Appointment"
                         },
@@ -189,7 +189,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                             ExpenseID = 2,
                             ExpenseAmount = 3000.0,
                             ExpenseCategoryID = 7,
-                            ExpenseDate = new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6783),
+                            ExpenseDate = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2077),
                             ExpenseReference = "Went to Spain",
                             ExpenseTitle = "Travelling"
                         },
@@ -198,7 +198,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                             ExpenseID = 3,
                             ExpenseAmount = 800.0,
                             ExpenseCategoryID = 8,
-                            ExpenseDate = new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6785),
+                            ExpenseDate = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2078),
                             ExpenseReference = "Rent and bills",
                             ExpenseTitle = "Rent"
                         });
@@ -225,6 +225,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                     b.Property<double>("SalaryAmount")
                         .HasColumnType("float");
 
+                    b.Property<string>("SalaryTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("IncomeId");
 
                     b.HasIndex("CategoryID");
@@ -236,33 +240,37 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         {
                             IncomeId = 1,
                             CategoryID = 5,
-                            Date = new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6694),
-                            Reference = "Bitcoin money",
-                            SalaryAmount = 2000.0
+                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(1991),
+                            Reference = "From freelance works.",
+                            SalaryAmount = 1300.0,
+                            SalaryTitle = "From Freelance"
                         },
                         new
                         {
                             IncomeId = 2,
                             CategoryID = 3,
-                            Date = new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6710),
-                            Reference = "Spotify",
-                            SalaryAmount = 8000.0
+                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2006),
+                            Reference = "My January Spotify earnings.",
+                            SalaryAmount = 8000.0,
+                            SalaryTitle = "Spotify"
                         },
                         new
                         {
                             IncomeId = 3,
                             CategoryID = 7,
-                            Date = new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6711),
-                            Reference = "Youtube Addsense",
-                            SalaryAmount = 1200.0
+                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2007),
+                            Reference = "My January youtube earnings.",
+                            SalaryAmount = 1200.0,
+                            SalaryTitle = "Youtube Adsense"
                         },
                         new
                         {
                             IncomeId = 4,
                             CategoryID = 1,
-                            Date = new DateTime(2024, 3, 12, 21, 31, 44, 800, DateTimeKind.Local).AddTicks(6713),
-                            Reference = "Developer Salary",
-                            SalaryAmount = 6000.0
+                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2008),
+                            Reference = "My January developer salary.",
+                            SalaryAmount = 6000.0,
+                            SalaryTitle = "Developer Salary"
                         });
                 });
 
