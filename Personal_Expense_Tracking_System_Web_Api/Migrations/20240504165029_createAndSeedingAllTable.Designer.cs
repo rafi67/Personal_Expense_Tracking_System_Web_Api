@@ -12,8 +12,8 @@ using Personal_Expense_Tracking_System_Web_Api.Data;
 namespace Personal_Expense_Tracking_System_Web_Api.Migrations
 {
     [DbContext(typeof(ApplicationDB))]
-    [Migration("20240331060634_SeedingAndCreatingExpensesTable")]
-    partial class SeedingAndCreatingExpensesTable
+    [Migration("20240504165029_createAndSeedingAllTable")]
+    partial class createAndSeedingAllTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
 
             modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.Categories", b =>
                 {
-                    b.Property<int>("CategoryID")
+                    b.Property<long>("CategoryID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("CategoryID"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -44,53 +44,53 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                     b.HasData(
                         new
                         {
-                            CategoryID = 1,
+                            CategoryID = 1L,
                             CategoryName = "Salary"
                         },
                         new
                         {
-                            CategoryID = 2,
+                            CategoryID = 2L,
                             CategoryName = "Freelancing"
                         },
                         new
                         {
-                            CategoryID = 3,
+                            CategoryID = 3L,
                             CategoryName = "Invesments"
                         },
                         new
                         {
-                            CategoryID = 4,
+                            CategoryID = 4L,
                             CategoryName = "Stocks"
                         },
                         new
                         {
-                            CategoryID = 5,
+                            CategoryID = 5L,
                             CategoryName = "Bitcoin"
                         },
                         new
                         {
-                            CategoryID = 6,
+                            CategoryID = 6L,
                             CategoryName = "Bank Transfer"
                         },
                         new
                         {
-                            CategoryID = 7,
+                            CategoryID = 7L,
                             CategoryName = "Youtube"
                         },
                         new
                         {
-                            CategoryID = 8,
+                            CategoryID = 8L,
                             CategoryName = "Other"
                         });
                 });
 
             modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.ExpenseCategories", b =>
                 {
-                    b.Property<int>("ExpenseCategoryID")
+                    b.Property<long>("ExpenseCategoryID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExpenseCategoryID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ExpenseCategoryID"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -103,59 +103,59 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                     b.HasData(
                         new
                         {
-                            ExpenseCategoryID = 1,
+                            ExpenseCategoryID = 1L,
                             CategoryName = "Education"
                         },
                         new
                         {
-                            ExpenseCategoryID = 2,
+                            ExpenseCategoryID = 2L,
                             CategoryName = "Groceries"
                         },
                         new
                         {
-                            ExpenseCategoryID = 3,
+                            ExpenseCategoryID = 3L,
                             CategoryName = "Health"
                         },
                         new
                         {
-                            ExpenseCategoryID = 4,
+                            ExpenseCategoryID = 4L,
                             CategoryName = "Subscriptions"
                         },
                         new
                         {
-                            ExpenseCategoryID = 5,
+                            ExpenseCategoryID = 5L,
                             CategoryName = "Takeaways"
                         },
                         new
                         {
-                            ExpenseCategoryID = 6,
+                            ExpenseCategoryID = 6L,
                             CategoryName = "Clothing"
                         },
                         new
                         {
-                            ExpenseCategoryID = 7,
+                            ExpenseCategoryID = 7L,
                             CategoryName = "Travelling"
                         },
                         new
                         {
-                            ExpenseCategoryID = 8,
+                            ExpenseCategoryID = 8L,
                             CategoryName = "Other"
                         });
                 });
 
             modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.Expenses", b =>
                 {
-                    b.Property<int>("ExpenseID")
+                    b.Property<long>("ExpenseID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExpenseID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ExpenseID"));
 
                     b.Property<double>("ExpenseAmount")
                         .HasColumnType("float");
 
-                    b.Property<int>("ExpenseCategoryID")
-                        .HasColumnType("int");
+                    b.Property<long>("ExpenseCategoryID")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("ExpenseDate")
                         .HasColumnType("datetime2");
@@ -168,52 +168,60 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
+
                     b.HasKey("ExpenseID");
 
                     b.HasIndex("ExpenseCategoryID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("expenses");
 
                     b.HasData(
                         new
                         {
-                            ExpenseID = 1,
+                            ExpenseID = 1L,
                             ExpenseAmount = 120.0,
-                            ExpenseCategoryID = 3,
-                            ExpenseDate = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2075),
+                            ExpenseCategoryID = 3L,
+                            ExpenseDate = new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7840),
                             ExpenseReference = "Tooth removal",
-                            ExpenseTitle = "Dentiest Appointment"
+                            ExpenseTitle = "Dentiest Appointment",
+                            UserID = 1L
                         },
                         new
                         {
-                            ExpenseID = 2,
+                            ExpenseID = 2L,
                             ExpenseAmount = 3000.0,
-                            ExpenseCategoryID = 7,
-                            ExpenseDate = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2077),
+                            ExpenseCategoryID = 7L,
+                            ExpenseDate = new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7843),
                             ExpenseReference = "Went to Spain",
-                            ExpenseTitle = "Travelling"
+                            ExpenseTitle = "Travelling",
+                            UserID = 1L
                         },
                         new
                         {
-                            ExpenseID = 3,
+                            ExpenseID = 3L,
                             ExpenseAmount = 800.0,
-                            ExpenseCategoryID = 8,
-                            ExpenseDate = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2078),
+                            ExpenseCategoryID = 8L,
+                            ExpenseDate = new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7844),
                             ExpenseReference = "Rent and bills",
-                            ExpenseTitle = "Rent"
+                            ExpenseTitle = "Rent",
+                            UserID = 1L
                         });
                 });
 
             modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.Incomes", b =>
                 {
-                    b.Property<int>("IncomeId")
+                    b.Property<long>("IncomeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IncomeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IncomeId"));
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
+                    b.Property<long>("CategoryID")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -229,48 +237,116 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
+
                     b.HasKey("IncomeId");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("incomes");
 
                     b.HasData(
                         new
                         {
-                            IncomeId = 1,
-                            CategoryID = 5,
-                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(1991),
+                            IncomeId = 1L,
+                            CategoryID = 5L,
+                            Date = new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7751),
                             Reference = "From freelance works.",
                             SalaryAmount = 1300.0,
-                            SalaryTitle = "From Freelance"
+                            SalaryTitle = "From Freelance",
+                            UserID = 1L
                         },
                         new
                         {
-                            IncomeId = 2,
-                            CategoryID = 3,
-                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2006),
+                            IncomeId = 2L,
+                            CategoryID = 3L,
+                            Date = new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7768),
                             Reference = "My January Spotify earnings.",
                             SalaryAmount = 8000.0,
-                            SalaryTitle = "Spotify"
+                            SalaryTitle = "Spotify",
+                            UserID = 1L
                         },
                         new
                         {
-                            IncomeId = 3,
-                            CategoryID = 7,
-                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2007),
+                            IncomeId = 3L,
+                            CategoryID = 7L,
+                            Date = new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7769),
                             Reference = "My January youtube earnings.",
                             SalaryAmount = 1200.0,
-                            SalaryTitle = "Youtube Adsense"
+                            SalaryTitle = "Youtube Adsense",
+                            UserID = 1L
                         },
                         new
                         {
-                            IncomeId = 4,
-                            CategoryID = 1,
-                            Date = new DateTime(2024, 3, 31, 12, 6, 33, 999, DateTimeKind.Local).AddTicks(2008),
+                            IncomeId = 4L,
+                            CategoryID = 1L,
+                            Date = new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7771),
                             Reference = "My January developer salary.",
                             SalaryAmount = 6000.0,
-                            SalaryTitle = "Developer Salary"
+                            SalaryTitle = "Developer Salary",
+                            UserID = 1L
+                        });
+                });
+
+            modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.User", b =>
+                {
+                    b.Property<long>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserID"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserPhoto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 1L,
+                            Email = "rafisiddique652@gmail.com",
+                            FirstName = "Rafi",
+                            Gender = "Male",
+                            LastName = "Siddique",
+                            Password = "admin",
+                            UserName = "Admin",
+                            UserPhoto = "rafi.jpg",
+                            UserRole = "Admin"
                         });
                 });
 
@@ -282,7 +358,15 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Personal_Expense_Tracking_System_Web_Api.Models.User", "Users")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ExpenseCategories");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Personal_Expense_Tracking_System_Web_Api.Models.Incomes", b =>
@@ -293,7 +377,15 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Personal_Expense_Tracking_System_Web_Api.Models.User", "Users")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Categories");
+
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

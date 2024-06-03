@@ -14,6 +14,8 @@ namespace Personal_Expense_Tracking_System_Web_Api.Repository
 
         public IExpensesRepository Expenses {  get; private set; }
 
+        public IUserRepository Users { get; private set; }
+
         public UniteOfWork(ApplicationDB db)
         {
             _db = db;
@@ -21,6 +23,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Repository
             Incomes = new IncomesRepository(_db);
             ExpenseCategories = new ExpenseCategoriesRepository(_db);
             Expenses = new ExpensesRepository(_db);
+            Users = new UserRepository(_db);
         }
 
 

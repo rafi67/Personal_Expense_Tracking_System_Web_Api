@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Personal_Expense_Tracking_System_Web_Api.Models;
 using Personal_Expense_Tracking_System_Web_Api.Repository.IRepository;
@@ -8,6 +9,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class ExpenseController : ControllerBase
     {
 
@@ -18,14 +20,14 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Expenses>> GetAllExpenses()
+        [HttpGet("{id:long}")]
+        public async Task<IEnumerable<Expenses>> GetAllExpenses(long id)
         {
-            return _unitOfWork.Expenses.GetAll(includeProperties: "ExpenseCategories");
+            return _unitOfWork.Expenses.GetAll(filter: u => u.UserID == id, includeProperties: "ExpenseCategories");
         }
 
         [HttpGet("{id:long}")]
-        public async Task<Expenses> GetExpense([FromRoute] int id)
+        public async Task<Expenses> GetExpense([FromRoute] long id)
         {
             return _unitOfWork.Expenses.Get(u => u.ExpenseID == id);
         }
@@ -47,7 +49,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         }
 
         [HttpDelete("{id:long}")]
-        public async Task<IActionResult> DeleteExpense([FromRoute] int id)
+        public async Task<IActionResult> DeleteExpense([FromRoute] long id)
         {
             var expense = _unitOfWork.Expenses.Get(u => u.ExpenseID == id);
             _unitOfWork.Expenses.Remove(expense);

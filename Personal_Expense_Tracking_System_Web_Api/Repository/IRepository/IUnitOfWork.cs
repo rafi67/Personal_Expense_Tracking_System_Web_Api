@@ -6,6 +6,7 @@
         IIncomesRepository Incomes { get; }
         IExpenseCategoriesRepository ExpenseCategories { get; }
         IExpensesRepository Expenses { get; }
+        IUserRepository Users { get; }
 
         void Save();
     }

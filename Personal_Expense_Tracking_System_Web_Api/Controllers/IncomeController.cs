@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Personal_Expense_Tracking_System_Web_Api.Data;
 using Personal_Expense_Tracking_System_Web_Api.Models;
@@ -9,6 +10,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class IncomeController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -18,14 +20,14 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Incomes>> GetAllIncomes()
+        [HttpGet("{id:long}")]
+        public async Task<IEnumerable<Incomes>> GetAllIncomes(long id)
         {
-            return _unitOfWork.Incomes.GetAll(includeProperties:"Categories");
+            return _unitOfWork.Incomes.GetAll(filter: u=>u.UserID==id, includeProperties:"Categories");
         }
 
         [HttpGet("{id:long}")]
-        public async Task<Incomes> GetIncome([FromRoute] int id)
+        public async Task<Incomes> GetIncome([FromRoute] long id)
         {
             return _unitOfWork.Incomes.Get(u => u.IncomeId == id);
         }
@@ -47,7 +49,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         }
 
         [HttpDelete("{id:long}")]
-        public async Task<IActionResult> DeleteIncome([FromRoute]int id)
+        public async Task<IActionResult> DeleteIncome([FromRoute]long id)
         {
             var income = _unitOfWork.Incomes.Get(u => u.IncomeId == id);
             _unitOfWork.Incomes.Remove(income);
