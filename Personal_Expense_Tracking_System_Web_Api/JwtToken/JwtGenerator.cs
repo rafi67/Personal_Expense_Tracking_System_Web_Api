@@ -26,6 +26,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.JwtToken
                 new Claim(JwtRegisteredClaimNames.Iss, "http://localhost:4200/"),
                 new Claim(JwtRegisteredClaimNames.Aud, "http://localhost:4200/"),
                 new Claim("UserID", obj.UserID.ToString()),
+                new Claim("UserRole", obj.UserRole.ToString()),
             });
 
             var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512);
