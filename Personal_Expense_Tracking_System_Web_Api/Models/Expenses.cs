@@ -15,10 +15,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Models
         public string ExpenseReference { get; set; }
         public long UserID { get; set; }
         [ValidateNever]
-        [ForeignKey(nameof(ExpenseCategoryID))]
+        [ForeignKey("ExpenseCategoryID")]
         public ExpenseCategories ExpenseCategories { get; set; }
         [ValidateNever]
-        [ForeignKey(nameof(UserID))]
+        [ForeignKey("UserID")]
         public User Users { get; set; }
     }
 }

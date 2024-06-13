@@ -31,9 +31,6 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Signup(User obj)
         {
-            
-
-
             _unitOfWork.Users.Add(obj);
             _unitOfWork.Save();
 

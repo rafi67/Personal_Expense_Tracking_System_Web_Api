@@ -17,10 +17,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Models
         public DateTime Date { get; set; }
         public string Reference { get; set; }
         public long UserID { get; set; }
-        [ForeignKey(nameof(CategoryID))]
+        [ForeignKey("CategoryID")]
         [ValidateNever]
         public Categories Categories { get; set; }
-        [ForeignKey(nameof(UserID))]
+        [ForeignKey("UserID")]
         [ValidateNever]
         public User Users { get; set; }
     }

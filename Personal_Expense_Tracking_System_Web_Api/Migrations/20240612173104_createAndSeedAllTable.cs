@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Personal_Expense_Tracking_System_Web_Api.Migrations
 {
     /// <inheritdoc />
-    public partial class createAndSeedingAllTable : Migration
+    public partial class createAndSeedAllTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -159,9 +159,9 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                 columns: new[] { "ExpenseID", "ExpenseAmount", "ExpenseCategoryID", "ExpenseDate", "ExpenseReference", "ExpenseTitle", "UserID" },
                 values: new object[,]
                 {
-                    { 1L, 120.0, 3L, new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7840), "Tooth removal", "Dentiest Appointment", 1L },
-                    { 2L, 3000.0, 7L, new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7843), "Went to Spain", "Travelling", 1L },
-                    { 3L, 800.0, 8L, new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7844), "Rent and bills", "Rent", 1L }
+                    { 1L, 120.0, 3L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7305), "Tooth removal", "Dentiest Appointment", 1L },
+                    { 2L, 3000.0, 7L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7308), "Went to Spain", "Travelling", 1L },
+                    { 3L, 800.0, 8L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7310), "Rent and bills", "Rent", 1L }
                 });
 
             migrationBuilder.InsertData(
@@ -169,10 +169,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                 columns: new[] { "IncomeId", "CategoryID", "Date", "Reference", "SalaryAmount", "SalaryTitle", "UserID" },
                 values: new object[,]
                 {
-                    { 1L, 5L, new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7751), "From freelance works.", 1300.0, "From Freelance", 1L },
-                    { 2L, 3L, new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7768), "My January Spotify earnings.", 8000.0, "Spotify", 1L },
-                    { 3L, 7L, new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7769), "My January youtube earnings.", 1200.0, "Youtube Adsense", 1L },
-                    { 4L, 1L, new DateTime(2024, 5, 4, 22, 50, 28, 730, DateTimeKind.Local).AddTicks(7771), "My January developer salary.", 6000.0, "Developer Salary", 1L }
+                    { 1L, 5L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7190), "From freelance works.", 1300.0, "From Freelance", 1L },
+                    { 2L, 3L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7207), "My January Spotify earnings.", 8000.0, "Spotify", 1L },
+                    { 3L, 7L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7208), "My January youtube earnings.", 1200.0, "Youtube Adsense", 1L },
+                    { 4L, 1L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7209), "My January developer salary.", 6000.0, "Developer Salary", 1L }
                 });
 
             migrationBuilder.CreateIndex(

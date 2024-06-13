@@ -35,6 +35,8 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddIncome(Incomes obj)
         {
+            obj.Users = null;
+            obj.Categories = null;
             _unitOfWork.Incomes.Add(obj);
             _unitOfWork.Save();
             return Ok(200);
@@ -43,6 +45,8 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateIncome(Incomes obj)
         {
+            obj.Users = null;
+            obj.Categories = null;
             _unitOfWork.Incomes.Update(obj);
             _unitOfWork.Save();
             return Ok(200);
