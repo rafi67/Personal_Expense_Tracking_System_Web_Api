@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Personal_Expense_Tracking_System_Web_Api.Data;
+using Personal_Expense_Tracking_System_Web_Api.ImageCrud;
+using Personal_Expense_Tracking_System_Web_Api.ImageCrud.IImageCrud;
 using Personal_Expense_Tracking_System_Web_Api.Models;
 using Personal_Expense_Tracking_System_Web_Api.Repository;
 using Personal_Expense_Tracking_System_Web_Api.Repository.IRepository;
@@ -31,6 +34,7 @@ builder.Services.AddCors(
     }
     );
 builder.Services.AddScoped<IUnitOfWork, UniteOfWork>();
+builder.Services.AddScoped<IImageCrud, ImageCrud>();
 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 

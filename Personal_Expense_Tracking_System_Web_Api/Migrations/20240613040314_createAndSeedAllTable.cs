@@ -51,7 +51,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserPhoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserRole = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -159,9 +159,9 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                 columns: new[] { "ExpenseID", "ExpenseAmount", "ExpenseCategoryID", "ExpenseDate", "ExpenseReference", "ExpenseTitle", "UserID" },
                 values: new object[,]
                 {
-                    { 1L, 120.0, 3L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7305), "Tooth removal", "Dentiest Appointment", 1L },
-                    { 2L, 3000.0, 7L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7308), "Went to Spain", "Travelling", 1L },
-                    { 3L, 800.0, 8L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7310), "Rent and bills", "Rent", 1L }
+                    { 1L, 120.0, 3L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8057), "Tooth removal", "Dentiest Appointment", 1L },
+                    { 2L, 3000.0, 7L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8060), "Went to Spain", "Travelling", 1L },
+                    { 3L, 800.0, 8L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8063), "Rent and bills", "Rent", 1L }
                 });
 
             migrationBuilder.InsertData(
@@ -169,10 +169,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                 columns: new[] { "IncomeId", "CategoryID", "Date", "Reference", "SalaryAmount", "SalaryTitle", "UserID" },
                 values: new object[,]
                 {
-                    { 1L, 5L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7190), "From freelance works.", 1300.0, "From Freelance", 1L },
-                    { 2L, 3L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7207), "My January Spotify earnings.", 8000.0, "Spotify", 1L },
-                    { 3L, 7L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7208), "My January youtube earnings.", 1200.0, "Youtube Adsense", 1L },
-                    { 4L, 1L, new DateTime(2024, 6, 12, 23, 31, 4, 136, DateTimeKind.Local).AddTicks(7209), "My January developer salary.", 6000.0, "Developer Salary", 1L }
+                    { 1L, 5L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7860), "From freelance works.", 1300.0, "From Freelance", 1L },
+                    { 2L, 3L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7886), "My January Spotify earnings.", 8000.0, "Spotify", 1L },
+                    { 3L, 7L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7888), "My January youtube earnings.", 1200.0, "Youtube Adsense", 1L },
+                    { 4L, 1L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7890), "My January developer salary.", 6000.0, "Developer Salary", 1L }
                 });
 
             migrationBuilder.CreateIndex(

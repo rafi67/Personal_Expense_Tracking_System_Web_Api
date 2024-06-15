@@ -2,9 +2,9 @@
 
 namespace Personal_Expense_Tracking_System_Web_Api.VmModel
 {
-    public class Singup
+    public class UserImage
     {
-        public User UserData {  get; set; }
-        public IFormFile FormData { get; set; }
+       public byte[] Image { get; set; }
+       public string ContentType { get; set; }
     }
 }

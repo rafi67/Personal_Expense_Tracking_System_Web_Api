@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Personal_Expense_Tracking_System_Web_Api.ImageCrud.IImageCrud;
 using Personal_Expense_Tracking_System_Web_Api.JwtToken;
 using Personal_Expense_Tracking_System_Web_Api.Models;
 using Personal_Expense_Tracking_System_Web_Api.Repository.IRepository;
 using Personal_Expense_Tracking_System_Web_Api.VmModel;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Personal_Expense_Tracking_System_Web_Api.Controllers
 {
@@ -16,16 +16,15 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IOptionsMonitor<JwtConfig> _optionsMonitor;
+        private readonly IImageCrud _imageCrud;
         private JwtGenerator tokenGenerator;
-        private IWebHostEnvironment _env;
 
-        public AuthenticationController(IUnitOfWork unitOfWork, IOptionsMonitor<JwtConfig> optionsMonitor, IWebHostEnvironment env) 
+        public AuthenticationController(IUnitOfWork unitOfWork, IOptionsMonitor<JwtConfig> optionsMonitor, IImageCrud imageCrud) 
         {
-            _unitOfWork = unitOfWork;
-            
+            _unitOfWork = unitOfWork;    
             _optionsMonitor = optionsMonitor;
             tokenGenerator = new JwtGenerator(_optionsMonitor);
-            _env = env;
+            _imageCrud = imageCrud;
         }
 
         [HttpPost]
@@ -44,22 +43,15 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         }
 
         [HttpPost("{id:long}")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> UploadImage([FromBody] long id, [FromForm] IFormFile file)
+        [Authorize]
+        public async Task<IActionResult> UploadImage(long id, IFormFile image)
         {
-            string filename = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", filename);
-
             var user = _unitOfWork.Users.Get(u => u.UserID == id);
-            user.UserPhoto = filename;
+            user.UserPhoto = _imageCrud.StoreImage(image);
+
             _unitOfWork.Users.Update(user);
             _unitOfWork.Save();
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                file.CopyTo(stream);
-                stream.Close();
-            }
             return Ok(200);
         }
 

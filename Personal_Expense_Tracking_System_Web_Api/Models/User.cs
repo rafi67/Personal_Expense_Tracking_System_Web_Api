@@ -12,7 +12,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public string UserPhoto { get; set; }
+        public string? UserPhoto { get; set; }
         public string UserRole { get; set; }
     }
 }

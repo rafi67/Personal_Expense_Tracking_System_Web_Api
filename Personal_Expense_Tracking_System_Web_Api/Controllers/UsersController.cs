@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Personal_Expense_Tracking_System_Web_Api.Models;
 using Personal_Expense_Tracking_System_Web_Api.Repository.IRepository;
 using Personal_Expense_Tracking_System_Web_Api.VmModel;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
+using Personal_Expense_Tracking_System_Web_Api.ImageCrud.IImageCrud;
 
 namespace Personal_Expense_Tracking_System_Web_Api.Controllers
 {
@@ -14,10 +18,12 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
     {
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageCrud _imageCrud;
 
-        public UsersController(IUnitOfWork unitOfWork) 
+        public UsersController(IUnitOfWork unitOfWork, IImageCrud imageCrud) 
         {
             _unitOfWork = unitOfWork;
+            _imageCrud = imageCrud;
         }
 
         [HttpGet]
@@ -55,7 +61,18 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             return userData;
         }
 
+        [HttpGet("{id:long}")]
+        [Authorize]
+        public async Task<IActionResult> GetUserImage(long id)
+        {
+            var user = _unitOfWork.Users.Get(u => u.UserID == id);
+            string imageName = user.UserPhoto;
+            var imageData = _imageCrud.ReadImage(imageName);
+            return File(imageData.Image, imageData.ContentType);
+        }
+
         [HttpGet("{id:long}/{password}")]
+        [Authorize]
         public async Task<IActionResult> ChangePassword(long id, string password)
         {
             var data = _unitOfWork.Users.Get(u=>u.UserID == id);
@@ -86,6 +103,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         public async Task<IActionResult> DeleteUser(long id)
         {
             var obj = _unitOfWork.Users.Get(u=>u.UserID==id);
+            _imageCrud.DeleteImage(obj.UserPhoto);
             _unitOfWork.Users.Remove(obj);
             _unitOfWork.Save();
             return Ok(200);
