@@ -8,6 +8,7 @@ using Personal_Expense_Tracking_System_Web_Api.VmModel;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Personal_Expense_Tracking_System_Web_Api.ImageCrud.IImageCrud;
+using Microsoft.AspNetCore.Identity;
 
 namespace Personal_Expense_Tracking_System_Web_Api.Controllers
 {
@@ -19,11 +20,13 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IImageCrud _imageCrud;
+        private PasswordHasher<object> _passwordHasher;
 
         public UsersController(IUnitOfWork unitOfWork, IImageCrud imageCrud) 
         {
             _unitOfWork = unitOfWork;
             _imageCrud = imageCrud;
+            _passwordHasher = new PasswordHasher<object>();
         }
 
         [HttpGet]
@@ -76,7 +79,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         public async Task<IActionResult> ChangePassword(long id, string password)
         {
             var data = _unitOfWork.Users.Get(u=>u.UserID == id);
-            data.Password = password;
+            data.Password = _passwordHasher.HashPassword(null, password);
             _unitOfWork.Users.Update(data);
             _unitOfWork.Save();
             return Ok(200);

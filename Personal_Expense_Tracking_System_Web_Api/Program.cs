@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Personal_Expense_Tracking_System_Web_Api.Data;
+using Personal_Expense_Tracking_System_Web_Api.DbInitializer;
 using Personal_Expense_Tracking_System_Web_Api.ImageCrud;
 using Personal_Expense_Tracking_System_Web_Api.ImageCrud.IImageCrud;
 using Personal_Expense_Tracking_System_Web_Api.Models;
@@ -35,6 +36,7 @@ builder.Services.AddCors(
     );
 builder.Services.AddScoped<IUnitOfWork, UniteOfWork>();
 builder.Services.AddScoped<IImageCrud, ImageCrud>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
@@ -78,6 +80,17 @@ app.UseAuthorization();
 
 app.UseCors("defualt");
 
+SeedDatabase();
+
 app.MapControllers();
 
 app.Run();
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initializer();
+    }
+}
