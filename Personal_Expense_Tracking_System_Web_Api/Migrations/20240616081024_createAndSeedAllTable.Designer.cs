@@ -12,7 +12,7 @@ using Personal_Expense_Tracking_System_Web_Api.Data;
 namespace Personal_Expense_Tracking_System_Web_Api.Migrations
 {
     [DbContext(typeof(ApplicationDB))]
-    [Migration("20240613040314_createAndSeedAllTable")]
+    [Migration("20240616081024_createAndSeedAllTable")]
     partial class createAndSeedAllTable
     {
         /// <inheritdoc />
@@ -185,7 +185,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                             ExpenseID = 1L,
                             ExpenseAmount = 120.0,
                             ExpenseCategoryID = 3L,
-                            ExpenseDate = new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8057),
+                            ExpenseDate = new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9871),
                             ExpenseReference = "Tooth removal",
                             ExpenseTitle = "Dentiest Appointment",
                             UserID = 1L
@@ -195,7 +195,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                             ExpenseID = 2L,
                             ExpenseAmount = 3000.0,
                             ExpenseCategoryID = 7L,
-                            ExpenseDate = new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8060),
+                            ExpenseDate = new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9874),
                             ExpenseReference = "Went to Spain",
                             ExpenseTitle = "Travelling",
                             UserID = 1L
@@ -205,7 +205,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                             ExpenseID = 3L,
                             ExpenseAmount = 800.0,
                             ExpenseCategoryID = 8L,
-                            ExpenseDate = new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8063),
+                            ExpenseDate = new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9875),
                             ExpenseReference = "Rent and bills",
                             ExpenseTitle = "Rent",
                             UserID = 1L
@@ -253,7 +253,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         {
                             IncomeId = 1L,
                             CategoryID = 5L,
-                            Date = new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7860),
+                            Date = new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9661),
                             Reference = "From freelance works.",
                             SalaryAmount = 1300.0,
                             SalaryTitle = "From Freelance",
@@ -263,7 +263,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         {
                             IncomeId = 2L,
                             CategoryID = 3L,
-                            Date = new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7886),
+                            Date = new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9774),
                             Reference = "My January Spotify earnings.",
                             SalaryAmount = 8000.0,
                             SalaryTitle = "Spotify",
@@ -273,7 +273,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         {
                             IncomeId = 3L,
                             CategoryID = 7L,
-                            Date = new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7888),
+                            Date = new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9776),
                             Reference = "My January youtube earnings.",
                             SalaryAmount = 1200.0,
                             SalaryTitle = "Youtube Adsense",
@@ -283,7 +283,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                         {
                             IncomeId = 4L,
                             CategoryID = 1L,
-                            Date = new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7890),
+                            Date = new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9778),
                             Reference = "My January developer salary.",
                             SalaryAmount = 6000.0,
                             SalaryTitle = "Developer Salary",
@@ -342,7 +342,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                             FirstName = "Rafi",
                             Gender = "Male",
                             LastName = "Siddique",
-                            Password = "admin",
+                            Password = "AQAAAAIAAYagAAAAEG77S3e8PORaUifTr4OagonyYgjgBgMYY4oCDlEXLY9TKy1jWp8dy7T3ym19aTwocw==",
                             UserName = "Admin",
                             UserPhoto = "rafi.jpg",
                             UserRole = "Admin"

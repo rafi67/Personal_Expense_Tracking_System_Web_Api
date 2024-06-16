@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Personal_Expense_Tracking_System_Web_Api.ImageCrud.IImageCrud;
@@ -18,6 +19,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
         private readonly IOptionsMonitor<JwtConfig> _optionsMonitor;
         private readonly IImageCrud _imageCrud;
         private JwtGenerator tokenGenerator;
+        private readonly PasswordHasher<object> _passwordHasher;
 
         public AuthenticationController(IUnitOfWork unitOfWork, IOptionsMonitor<JwtConfig> optionsMonitor, IImageCrud imageCrud) 
         {
@@ -25,11 +27,14 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             _optionsMonitor = optionsMonitor;
             tokenGenerator = new JwtGenerator(_optionsMonitor);
             _imageCrud = imageCrud;
+            _passwordHasher = new PasswordHasher<object>();
         }
 
         [HttpPost]
         public async Task<IActionResult> Signup(User obj)
         {
+            var hashedPassword = _passwordHasher.HashPassword(null, obj.Password);
+            obj.Password = hashedPassword;
             _unitOfWork.Users.Add(obj);
             _unitOfWork.Save();
 
@@ -61,12 +66,13 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             User userData = null;
             string email = null;
             string UserName = null;
+
             for (int i = 0; i < obj.UserNameOrEmail.Length; i++)
             {
                 if (obj.UserNameOrEmail[i] == '@')
                 {
                     email = obj.UserNameOrEmail;
-                    userData = _unitOfWork.Users.Get(u => u.Email == email && u.Password == obj.Password);
+                    userData = _unitOfWork.Users.Get(u => u.Email == email);
                     break;
                 }
             }
@@ -74,10 +80,12 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             if (email == null)
             {
                 UserName = obj.UserNameOrEmail;
-                userData = _unitOfWork.Users.Get(u => u.UserName == UserName && u.Password == obj.Password);
+                userData = _unitOfWork.Users.Get(u => u.UserName == UserName);
             }
 
-            if (userData != null) 
+            var passwordVarify = _passwordHasher.VerifyHashedPassword(null, userData.Password, obj.Password);
+
+            if (passwordVarify==PasswordVerificationResult.Success) 
                 return Ok(new
             {
                 token = tokenGenerator.CreateJwt(userData),

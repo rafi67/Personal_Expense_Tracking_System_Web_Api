@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Personal_Expense_Tracking_System_Web_Api.Models;
 using Personal_Expense_Tracking_System_Web_Api.Utility;
 
@@ -19,8 +20,11 @@ namespace Personal_Expense_Tracking_System_Web_Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            var _passwordHasher = new PasswordHasher<object>();
+            var hashedPassword = _passwordHasher.HashPassword(null, "admin");
+
             modelBuilder.Entity<User>().HasData(
-                new User { UserID = 1, FirstName = "Rafi", LastName = "Siddique", Gender = "Male", UserName = "Admin", Password = "admin", Email = "rafisiddique652@gmail.com", UserPhoto = "rafi.jpg", UserRole = SD.Role_Admin }
+                new User { UserID = 1, FirstName = "Rafi", LastName = "Siddique", Gender = "Male", UserName = "Admin", Password = hashedPassword, Email = "rafisiddique652@gmail.com", UserPhoto = "rafi.jpg", UserRole = SD.Role_Admin }
                 );
 
             modelBuilder.Entity<Categories>().HasData(

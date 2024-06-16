@@ -152,16 +152,16 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
             migrationBuilder.InsertData(
                 table: "users",
                 columns: new[] { "UserID", "Email", "FirstName", "Gender", "LastName", "Password", "UserName", "UserPhoto", "UserRole" },
-                values: new object[] { 1L, "rafisiddique652@gmail.com", "Rafi", "Male", "Siddique", "admin", "Admin", "rafi.jpg", "Admin" });
+                values: new object[] { 1L, "rafisiddique652@gmail.com", "Rafi", "Male", "Siddique", "AQAAAAIAAYagAAAAEG77S3e8PORaUifTr4OagonyYgjgBgMYY4oCDlEXLY9TKy1jWp8dy7T3ym19aTwocw==", "Admin", "rafi.jpg", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "expenses",
                 columns: new[] { "ExpenseID", "ExpenseAmount", "ExpenseCategoryID", "ExpenseDate", "ExpenseReference", "ExpenseTitle", "UserID" },
                 values: new object[,]
                 {
-                    { 1L, 120.0, 3L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8057), "Tooth removal", "Dentiest Appointment", 1L },
-                    { 2L, 3000.0, 7L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8060), "Went to Spain", "Travelling", 1L },
-                    { 3L, 800.0, 8L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(8063), "Rent and bills", "Rent", 1L }
+                    { 1L, 120.0, 3L, new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9871), "Tooth removal", "Dentiest Appointment", 1L },
+                    { 2L, 3000.0, 7L, new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9874), "Went to Spain", "Travelling", 1L },
+                    { 3L, 800.0, 8L, new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9875), "Rent and bills", "Rent", 1L }
                 });
 
             migrationBuilder.InsertData(
@@ -169,10 +169,10 @@ namespace Personal_Expense_Tracking_System_Web_Api.Migrations
                 columns: new[] { "IncomeId", "CategoryID", "Date", "Reference", "SalaryAmount", "SalaryTitle", "UserID" },
                 values: new object[,]
                 {
-                    { 1L, 5L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7860), "From freelance works.", 1300.0, "From Freelance", 1L },
-                    { 2L, 3L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7886), "My January Spotify earnings.", 8000.0, "Spotify", 1L },
-                    { 3L, 7L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7888), "My January youtube earnings.", 1200.0, "Youtube Adsense", 1L },
-                    { 4L, 1L, new DateTime(2024, 6, 13, 10, 3, 14, 500, DateTimeKind.Local).AddTicks(7890), "My January developer salary.", 6000.0, "Developer Salary", 1L }
+                    { 1L, 5L, new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9661), "From freelance works.", 1300.0, "From Freelance", 1L },
+                    { 2L, 3L, new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9774), "My January Spotify earnings.", 8000.0, "Spotify", 1L },
+                    { 3L, 7L, new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9776), "My January youtube earnings.", 1200.0, "Youtube Adsense", 1L },
+                    { 4L, 1L, new DateTime(2024, 6, 16, 14, 10, 24, 385, DateTimeKind.Local).AddTicks(9778), "My January developer salary.", 6000.0, "Developer Salary", 1L }
                 });
 
             migrationBuilder.CreateIndex(

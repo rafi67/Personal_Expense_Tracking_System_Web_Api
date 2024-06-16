@@ -99,6 +99,18 @@ namespace Personal_Expense_Tracking_System_Web_Api.Controllers
             return Ok(200);
         }
 
+        [HttpPut("{id:long}")]
+        public async Task<IActionResult> UpdateUserImage(long id, IFormFile file)
+        {
+            var user = _unitOfWork.Users.Get(u => u.UserID == id);
+            _imageCrud.DeleteImage(user.UserPhoto);
+            var fileName = _imageCrud.StoreImage(file);
+            user.UserPhoto = fileName;
+            _unitOfWork.Users.Update(user);
+            _unitOfWork.Save();
+            return Ok(200);
+        }
+
         [HttpDelete("{id:long}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
