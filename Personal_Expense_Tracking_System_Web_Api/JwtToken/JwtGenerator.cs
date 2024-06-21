@@ -34,7 +34,7 @@ namespace Personal_Expense_Tracking_System_Web_Api.JwtToken
             var tokenDescriptor = new SecurityTokenDescriptor 
             {
                 Subject = identity,
-                Expires = DateTime.Now.AddHours(4),
+                Expires = DateTime.UtcNow.AddHours(4),
                 SigningCredentials = credentials,
             };
 
